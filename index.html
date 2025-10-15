@@ -18,22 +18,39 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Hi, I'm <span>Prem Patel</span></h1>
-    <p>Developer • Designer • Innovator</p>
-    <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Get in Touch</a>
+  <section class="hero reveal">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1>Hi, I'm <span>Prem Patel</span></h1>
+        <p>Developer • Designer • Innovator</p>
+        <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Get in Touch</a>
+      </div>
+      <div class="hero-visual" id="hero-visual">
+        <div class="profile-frame">
+          <img id="profile-img" src="assets/photo.png" alt="Prem Patel profile" />
+        </div>
+        <div id="hero-3d" aria-hidden="true"></div>
+      </div>
+    </div>
   </section>
 
-  <section id="about" class="about">
+  <section id="about" class="about reveal">
     <h2>About Me</h2>
     <p>
-      I'm a passionate developer focused on crafting clean, user-friendly designs with elegant code.
-      I love combining minimalism with functionality, creating interfaces that feel both modern and intuitive.
-      Currently exploring front-end frameworks, UI design systems, and creative coding.
+      I'm a Computer Science (CSE) enthusiast and developer focused on building performant web experiences,
+      strong system designs, and delightful interfaces. I combine fundamentals in data structures, algorithms,
+      and networking with modern front-end engineering, design systems, and creative coding.
+      " Everyone wants you to pick one thing.
+        Screw that.
+        I’m not made to be single-core.
+        I’m a multi-threaded mind in a society built on binaries. "
+                                                                -me
+      
     </p>
   </section>
 
-  <section id="skills" class="skills">
+  <section id="skills" class="skills reveal">
+    <div class="section-3d" id="skills-3d" aria-hidden="true"></div>
     <h2>Skills</h2>
     <div class="skill-grid">
       <div class="skill-card">
@@ -59,7 +76,8 @@
     </div>
   </section>
 
-  <section id="projects" class="projects">
+  <section id="projects" class="projects reveal">
+    <div class="section-3d" id="projects-3d" aria-hidden="true"></div>
     <h2>Projects</h2>
     <div class="project-grid">
       <div class="project-card">
@@ -85,7 +103,7 @@
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact" class="contact reveal">
     <h2>Contact</h2>
     <p>Want to collaborate or just say hi?</p>
     <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Email Me</a>
@@ -95,6 +113,8 @@
     <p>© 2025 Prem Patel | Built with 💙</p>
   </footer>
 
+  <div id="cursor-glow" aria-hidden="true"></div>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
