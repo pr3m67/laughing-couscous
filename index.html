@@ -18,13 +18,23 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Hi, I'm <span>Prem Patel</span></h1>
-    <p>Developer • Designer • Innovator</p>
-    <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Get in Touch</a>
+  <section class="hero reveal">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1>Hi, I'm <span>Prem Patel</span></h1>
+        <p>Developer • Designer • Innovator</p>
+        <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Get in Touch</a>
+      </div>
+      <div class="hero-visual" id="hero-visual">
+        <div class="profile-frame">
+          <img id="profile-img" src="assets/profile.jpg" alt="Prem Patel profile" />
+        </div>
+        <div id="hero-3d" aria-hidden="true"></div>
+      </div>
+    </div>
   </section>
 
-  <section id="about" class="about">
+  <section id="about" class="about reveal">
     <h2>About Me</h2>
     <p>
       I'm a passionate developer focused on crafting clean, user-friendly designs with elegant code.
@@ -33,7 +43,7 @@
     </p>
   </section>
 
-  <section id="skills" class="skills">
+  <section id="skills" class="skills reveal">
     <h2>Skills</h2>
     <div class="skill-grid">
       <div class="skill-card">
@@ -59,7 +69,7 @@
     </div>
   </section>
 
-  <section id="projects" class="projects">
+  <section id="projects" class="projects reveal">
     <h2>Projects</h2>
     <div class="project-grid">
       <div class="project-card">
@@ -85,7 +95,7 @@
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact" class="contact reveal">
     <h2>Contact</h2>
     <p>Want to collaborate or just say hi?</p>
     <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Email Me</a>
@@ -95,6 +105,8 @@
     <p>© 2025 Prem Patel | Built with 💙</p>
   </footer>
 
+  <div id="cursor-glow" aria-hidden="true"></div>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
