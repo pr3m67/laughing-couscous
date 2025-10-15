@@ -50,7 +50,11 @@ function setupScrollReveal() {
     { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
   );
 
-  revealTargets.forEach((el) => observer.observe(el));
+  revealTargets.forEach((el, index) => {
+    // stagger by index within each container
+    el.style.setProperty("--rd", `${Math.min(index * 0.06, 0.4)}s`);
+    observer.observe(el);
+  });
 }
 
 // Cursor glow follower
@@ -185,4 +189,90 @@ window.addEventListener("DOMContentLoaded", () => {
   setupCursorGlow();
   setupProfileImageFallback();
   initHero3D();
+  initSection3D("skills-3d", { colorA: 0x7b61ff, colorB: 0xec4899, seed: 1 });
+  initSection3D("projects-3d", { colorA: 0xa855f7, colorB: 0x7b61ff, seed: 2 });
 });
+
+// Lightweight section 3D background (Three.js) with metaball-like blobs
+function initSection3D(elementId, opts) {
+  const container = document.getElementById(elementId);
+  if (!container) return;
+  if (typeof THREE === "undefined") return;
+
+  const scene = new THREE.Scene();
+  const width = container.clientWidth;
+  const height = container.clientHeight || container.parentElement.clientHeight;
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+  camera.position.set(0, 0, 8);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearAlpha(0);
+  container.appendChild(renderer.domElement);
+
+  const light = new THREE.PointLight(0xffffff, 1.0, 30);
+  light.position.set(5, 5, 10);
+  scene.add(light);
+
+  const group = new THREE.Group();
+  scene.add(group);
+
+  const rng = mulberry32((opts?.seed || 1) * 123456);
+  const colors = [new THREE.Color(opts?.colorA || 0x7b61ff), new THREE.Color(opts?.colorB || 0xec4899)];
+  const sphereGeometry = new THREE.IcosahedronGeometry(1.2, 4);
+
+  const balls = Array.from({ length: 5 }, (_, i) => {
+    const color = colors[i % colors.length];
+    const material = new THREE.MeshPhysicalMaterial({
+      color,
+      roughness: 0.4,
+      metalness: 0.1,
+      clearcoat: 0.6,
+      clearcoatRoughness: 0.5,
+      transmission: 0.0,
+      thickness: 0.5,
+    });
+    const mesh = new THREE.Mesh(sphereGeometry, material);
+    mesh.position.set((rng() - 0.5) * 6, (rng() - 0.5) * 3, (rng() - 0.5) * 2);
+    mesh.scale.setScalar(0.8 + rng() * 0.8);
+    group.add(mesh);
+    return { mesh, speed: 0.2 + rng() * 0.6, phase: rng() * Math.PI * 2 };
+  });
+
+  function onResize() {
+    const w = container.clientWidth;
+    const h = container.clientHeight || container.parentElement.clientHeight;
+    camera.aspect = Math.max(w / h, 0.01);
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  }
+  window.addEventListener("resize", onResize);
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function tick(time = 0) {
+    if (!prefersReducedMotion) {
+      const t = time * 0.001;
+      balls.forEach((b, i) => {
+        b.mesh.rotation.x += 0.002 + i * 0.0005;
+        b.mesh.rotation.y += 0.003 + i * 0.0006;
+        b.mesh.position.y = Math.sin(t * b.speed + b.phase) * 0.8;
+      });
+      group.rotation.y += 0.0008;
+    }
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+  tick();
+}
+
+// Small seeded RNG for nice repeatable motion
+function mulberry32(a) {
+  return function() {
+    let t = (a += 0x6D2B79F5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}

@@ -161,7 +161,7 @@ h2 {
 
 /* Reveal on scroll */
 .reveal { opacity: 0; transform: translateY(24px) scale(0.98); }
-.revealed { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+.revealed { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; transition-delay: var(--rd, 0s); }
 
 /* Skill Cards */
 .skill-grid {
@@ -169,6 +169,11 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+}
+
+/* Force 5 columns on large screens for perfect alignment */
+@media (min-width: 1100px) {
+  .skill-grid { grid-template-columns: repeat(5, 1fr); }
 }
 
 .skill-card {
@@ -271,6 +276,16 @@ h2 {
   color: #7b61ff;
   font-weight: 600;
 }
+
+/* Section embedded 3D layers */
+.skills, .projects { position: relative; overflow: hidden; }
+.section-3d {
+  position: absolute;
+  inset: -10% -5% -10% -5%; /* bleed slightly for nicer edges */
+  z-index: 0;
+  pointer-events: none;
+}
+.skill-grid, .project-grid { position: relative; z-index: 1; }
 
 footer {
   background: #f5f5f5;
