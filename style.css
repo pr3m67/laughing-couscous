@@ -1,0 +1,24 @@
+/* Full-screen canvas */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0a0a0a;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+#info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    background: rgba(0,0,0,0.4);
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+#info h1 { margin: 0; font-size: 2em; }
+#info p { margin: 5px 0; }
