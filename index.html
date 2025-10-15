@@ -19,12 +19,18 @@
   </header>
 
   <section class="hero">
-    <h1>Hi, I'm <span>Prem Patel</span></h1>
-    <p>Developer • Designer • Innovator</p>
-    <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Get in Touch</a>
+    <div id="three-container" aria-hidden="true"></div>
+    <div class="hero-content reveal">
+      <div class="profile-frame">
+        <img id="profile-photo" src="https://i.pravatar.cc/300?u=premmanishpatel2004@gmail.com" alt="Prem Patel profile photo" />
+      </div>
+      <h1>Hi, I'm <span>Prem Patel</span></h1>
+      <p>Developer • Designer • Innovator</p>
+      <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Get in Touch</a>
+    </div>
   </section>
 
-  <section id="about" class="about">
+  <section id="about" class="about reveal">
     <h2>About Me</h2>
     <p>
       I'm a passionate developer focused on crafting clean, user-friendly designs with elegant code.
@@ -33,51 +39,51 @@
     </p>
   </section>
 
-  <section id="skills" class="skills">
+  <section id="skills" class="skills reveal">
     <h2>Skills</h2>
     <div class="skill-grid">
-      <div class="skill-card">
+      <div class="skill-card reveal">
         <h3>HTML & CSS</h3>
         <div class="progress-bar"><div class="fill" style="width: 95%"></div></div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal">
         <h3>JavaScript</h3>
         <div class="progress-bar"><div class="fill" style="width: 85%"></div></div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal">
         <h3>React</h3>
         <div class="progress-bar"><div class="fill" style="width: 80%"></div></div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal">
         <h3>Node.js</h3>
         <div class="progress-bar"><div class="fill" style="width: 70%"></div></div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal">
         <h3>UI/UX Design</h3>
         <div class="progress-bar"><div class="fill" style="width: 90%"></div></div>
       </div>
     </div>
   </section>
 
-  <section id="projects" class="projects">
+  <section id="projects" class="projects reveal">
     <h2>Projects</h2>
     <div class="project-grid">
-      <div class="project-card">
+      <div class="project-card reveal">
         <h3>Apple Clone Website</h3>
         <p>A sleek, responsive Apple-style product page built using HTML, CSS, and JavaScript.</p>
         <a href="#">View Demo →</a>
       </div>
-      <div class="project-card">
+      <div class="project-card reveal">
         <h3>WeatherNow App</h3>
         <p>Real-time weather tracking app using OpenWeather API and modern UI animations.</p>
         <a href="#">View Demo →</a>
       </div>
-      <div class="project-card">
+      <div class="project-card reveal">
         <h3>TaskFlow Dashboard</h3>
         <p>A productivity dashboard that helps track goals and tasks, built with React & Firebase.</p>
         <a href="#">View Demo →</a>
       </div>
-      <div class="project-card">
+      <div class="project-card reveal">
         <h3>Portfolio Template</h3>
         <p>A customizable portfolio website built for creative professionals and developers.</p>
         <a href="#">View Demo →</a>
@@ -85,7 +91,7 @@
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact" class="contact reveal">
     <h2>Contact</h2>
     <p>Want to collaborate or just say hi?</p>
     <a href="mailto:premmanishpatel2004@gmail.com" class="btn">Email Me</a>
@@ -95,6 +101,7 @@
     <p>© 2025 Prem Patel | Built with 💙</p>
   </footer>
 
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
